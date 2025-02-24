@@ -1,21 +1,17 @@
 const RequestHandler = require("../src/core/requestHandler");
+const requestHandler = new RequestHandler();
 
-const testRequest = async () => {
-  const requestHandler = new RequestHandler({
-    maxRetries: 3,
-  });
-
+(async () => {
   try {
     const response = await requestHandler.sendRequest({
-      url: "https://httpbin.org/status/200", // Test random 500 or 200
+      url: "https://httpbin.org/status/500",
       method: "GET",
+      maxRetries: 5,
+      retryStrategy: "fibonacci",
+      type: "REST", // Specify REST API
     });
-
-    console.log("🎉 Final Response:", response);
+    console.log("🎉 Response received:", response);
   } catch (error) {
-    console.error("❌ Request Failed:", error.message);
+    console.error("❌ Request permanently failed:", error.message);
   }
-};
-
-// Run the test
-testRequest();
+})();

@@ -1,6 +1,6 @@
 {
   "name": "smart-retry-system",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A smart retry mechanism for handling API failures with customizable strategies",
   "main": "src/index.js",
   "scripts": {

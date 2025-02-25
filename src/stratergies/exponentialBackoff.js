@@ -1,3 +1,0 @@
-module.exports = function exponentialBackoff(attempt, baseDelay = 1000) {
-  return baseDelay * Math.pow(2, attempt - 1); // 1s, 2s, 4s, 8s...
-};

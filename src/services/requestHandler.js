@@ -29,20 +29,24 @@ class RequestHandler {
     }
   }
 
+  // Function to retry
   shouldRetry(error) {
     if (!error.response) return true; // Network issues or timeouts
     return ErrorCodes.SERVER_ERRORS.includes(error.response.status); // Retry only on server errors
   }
 
+  // Fibonacci logic
   fibonacci(n) {
-    let a = 1,
-      b = 1;
+    let first = 1,
+      second = 1;
+
     for (let i = 2; i < n; i++) {
-      [a, b] = [b, a + b];
+      [first, second] = [second, first + second];
     }
-    return b;
+    return second;
   }
 
+  // Function to check the type of retry and redirect the same
   getRetryDelay(strategy, attempt, baseDelay = 1000, maxDelay = 30000) {
     console.log(strategy);
     switch (strategy) {
